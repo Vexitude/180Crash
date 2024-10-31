@@ -10,12 +10,13 @@ using UnityEngine;
  */
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 10;
-    public float jumpForce = 10;
+    public float moveSpeed = 8;
+    public float jumpForce = 7;
     public float deathY = -5f;
     public float raycastDist = 1.2f;
 
     public int lives = 3;
+    public int totalFruit = 0;
 
     public GameObject respawnPoint;
 
@@ -72,6 +73,20 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<WumpaFruit>())
+        {
+            totalFruit += other.GetComponent<WumpaFruit>().fruitValue;
+            Destroy(other.gameObject);
+        }
+            
+
+    }
+
+
+
 
 
     public void Respawn()
