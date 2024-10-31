@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /*
@@ -17,6 +18,7 @@ public class RegularEnemy : MonoBehaviour
     public float movingrightSpeed = 5;
     public float movingleftSpeed = 5;
 
+    private bool ismovingleft = false;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +35,27 @@ public class RegularEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        RaycastHit hitInfo;
+
+
+        if (Physics.Raycast(raycastLeftOrigin, Vector3.left, out hitInfo))
+        {
+            if (hitInfo.collider.GetComponent<PlayerMovement>())
+            {
+                ismovingleft = true;
+
+            }
+        }
+
+
+        if (Physics.Raycast(raycastRightOrigin, Vector3.right, out hitInfo))
+        {
+            if (hitInfo.collider.GetComponent<PlayerMovement>())
+            {
+                ismovingleft = true;
+
+            }
+        }
     }
 
 }
