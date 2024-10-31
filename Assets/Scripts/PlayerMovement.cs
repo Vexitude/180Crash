@@ -13,8 +13,11 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 10;
     public float jumpForce = 10;
     public float deathY = -5f;
+    public float raycastDist = 1.2f;
 
     public int lives = 3;
+
+    public GameObject respawnPoint;
 
     private Vector3 moveDir;
     private Rigidbody rb;
@@ -55,5 +58,52 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space) && IsGrounded ())
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+
+        if(transform.position.y <= deathY)
+        {
+            Respawn();
+        }
+
+    }
+
+
+    public void Respawn()
+    {
+        lives--;
+        if(lives <= 0)
+        {
+            print("Game Over");
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+        }
+        else
+        {
+            transform.position = respawnPoint.transform.position;
+        }
+    }
+
+
+    private bool IsGrounded()
+    {
+        bool isGrounded = false;
+
+        if(Physics.Raycast(transform.position, Vector3.down,raycastDist))
+        {
+            isGrounded = true;
+        }
+        return isGrounded;
+    }
+
+
+
+
+
+
 
 }
