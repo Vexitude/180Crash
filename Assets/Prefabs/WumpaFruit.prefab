@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fruitValue: 1
-  rotSpeed: 5
+  rotSpeed: 20
 --- !u!1 &4358157313239145400
 GameObject:
   m_ObjectHideFlags: 0
