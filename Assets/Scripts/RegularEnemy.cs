@@ -17,19 +17,15 @@ public class RegularEnemy : MonoBehaviour
 
     public float movingrightSpeed = 5;
     public float movingleftSpeed = 5;
+    public float raycastDist = 1.2f;
 
-    private bool ismovingleft = false;
+    public bool ismovingleft;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        float halfWidth = transform.localScale.x / 2 + 0.1f;
-
-
-        raycastLeftOrigin = transform.position - new Vector3(halfWidth, 0, 0);
-        raycastRightOrigin = transform.position + new Vector3(halfWidth, 0, 0);
-
-
+     
     }
 
     // Update is called once per frame
@@ -37,25 +33,39 @@ public class RegularEnemy : MonoBehaviour
     {
         RaycastHit hitInfo;
 
+        float halfWidth = transform.localScale.x / 2 + 0.1f;
 
-        if (!ismovingleft && Physics.Raycast(raycastLeftOrigin, Vector3.left, out hitInfo))
+
+        raycastLeftOrigin = transform.position - new Vector3(halfWidth, 0, 0);
+        raycastRightOrigin = transform.position + new Vector3(halfWidth, 0, 0);
+
+        if (ismovingleft && Physics.Raycast(raycastLeftOrigin, Vector3.left, out hitInfo))
         {
-            if (hitInfo.collider.GetComponent<PlayerMovement>())
+            //print( "Left: " + hitInfo.distance);
+            //("Tag: " + hitInfo.collider.tag);
+            print("Hit: " + hitInfo.collider.gameObject.name);
+
+            if (hitInfo.collider.CompareTag("Wall") && hitInfo.distance < 0.1f)
             {
+                print("Left");
+                ismovingleft = false;
+
+            }
+        }
+        else if (!ismovingleft && Physics.Raycast(raycastRightOrigin, Vector3.right, out hitInfo))
+        {
+            print("Right: " + hitInfo.distance);
+            if (hitInfo.collider.CompareTag("Wall") && hitInfo.distance < 0.1f)
+            {
+                print("Right");
                 ismovingleft = true;
 
             }
         }
+        Debug.DrawRay(raycastLeftOrigin, Vector3.left * raycastDist, Color.red);
 
+        Debug.DrawRay(raycastRightOrigin, Vector3.right * raycastDist, Color.red);
 
-        if (!ismovingleft && Physics.Raycast(raycastRightOrigin, Vector3.left, out hitInfo))
-        {
-            if (hitInfo.collider.GetComponent<PlayerMovement>())
-            {
-                ismovingleft = true;
-
-            }
-        }
 
         if(ismovingleft)
         {
@@ -77,12 +87,6 @@ public class RegularEnemy : MonoBehaviour
     {
 
         transform.position += Vector3.right * movingrightSpeed * Time.deltaTime;
-
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-            ismovingleft = false;
 
     }
 }
