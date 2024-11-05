@@ -5,7 +5,7 @@ using UnityEngine;
 
 /*
  * Vex Vasquez
- * Last Updated: 10/31/2024
+ * Last Updated: 11/4/2024
  * Controls Enemy Movement for Regular Enemies
  */
 
@@ -38,7 +38,7 @@ public class RegularEnemy : MonoBehaviour
         RaycastHit hitInfo;
 
 
-        if (Physics.Raycast(raycastLeftOrigin, Vector3.left, out hitInfo))
+        if (!ismovingleft && Physics.Raycast(raycastLeftOrigin, Vector3.left, out hitInfo))
         {
             if (hitInfo.collider.GetComponent<PlayerMovement>())
             {
@@ -48,15 +48,41 @@ public class RegularEnemy : MonoBehaviour
         }
 
 
-        if (Physics.Raycast(raycastRightOrigin, Vector3.right, out hitInfo))
+        if (!ismovingleft && Physics.Raycast(raycastRightOrigin, Vector3.left, out hitInfo))
         {
             if (hitInfo.collider.GetComponent<PlayerMovement>())
             {
                 ismovingleft = true;
 
             }
+        }
+
+        if(ismovingleft)
+        {
+            MoveLeft();
+        }
+
+        if (!ismovingleft)
+        {
+            MoveRight();
         }
     }
 
+    private void MoveLeft()
+    {
+        transform.position += Vector3.left * movingleftSpeed * Time.deltaTime;
+    }
 
+    private void MoveRight()
+    {
+
+        transform.position += Vector3.right * movingrightSpeed * Time.deltaTime;
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+            ismovingleft = false;
+
+    }
 }

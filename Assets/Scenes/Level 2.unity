@@ -607,6 +607,7 @@ GameObject:
   - component: {fileID: 2119983808}
   - component: {fileID: 2119983807}
   - component: {fileID: 2119983806}
+  - component: {fileID: 2119983810}
   m_Layer: 0
   m_Name: RegularEnemy
   m_TagString: Untagged
@@ -702,6 +703,20 @@ Transform:
   - {fileID: 762655665}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2119983810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119983805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79990cc80ccc3044a97bffbc1047d50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movingrightSpeed: 5
+  movingleftSpeed: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
