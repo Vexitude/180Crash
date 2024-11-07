@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 /*
- * Vex Vasquez
+ * VEX VASQUEZ
  * Last Updated: 11/4/2024
  * Controls Enemy Movement for Regular Enemies
  */

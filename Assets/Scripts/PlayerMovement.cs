@@ -8,12 +8,20 @@ using UnityEngine;
  * Date: 10/31/2024
  * Des: Player inputs, movement, lives.
  */
+
+/*
+ * Name: VEX VASQUEZ
+ * Date: 11/6/2024
+ * Des: Worked solely on spin attack for player
+ */
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 8;
     public float jumpForce = 7;
     public float deathY = -5f;
     public float raycastDist = 1.2f;
+
+    public bool isAttacking = false;
 
     public int lives = 3;
     public int totalFruit = 0;
@@ -22,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 moveDir;
     private Rigidbody rb;
-
+    
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +80,11 @@ public class PlayerMovement : MonoBehaviour
             Respawn();
         }
 
+        if(!isAttacking && Input.GetKeyDown(KeyCode.E))
+        {
+            StartCoroutine(SpinAttack());
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -115,8 +128,17 @@ public class PlayerMovement : MonoBehaviour
         return isGrounded;
     }
 
+    IEnumerator SpinAttack()
+    {
+        Color startcolor = GetComponent<MeshRenderer>().material.color;
 
+        GetComponent<MeshRenderer>().material.color = Color.red;
 
+        yield return new WaitForSeconds(2);
+
+        GetComponent<MeshRenderer>().material.color = startcolor;
+        isAttacking = false;
+    }
 
 
 
