@@ -83,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
         if(!isAttacking && Input.GetKeyDown(KeyCode.E))
         {
             StartCoroutine(SpinAttack());
+
         }
 
     }
@@ -137,6 +138,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         GetComponent<MeshRenderer>().material.color = startcolor;
+
         isAttacking = false;
     }
 

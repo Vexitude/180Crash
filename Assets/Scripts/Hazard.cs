@@ -14,6 +14,7 @@ public class Hazard : MonoBehaviour
         {
             collision.gameObject.GetComponent<PlayerMovement>().Respawn();
         }
+
     }
 
     private void OnTriggerEnter(Collider other)

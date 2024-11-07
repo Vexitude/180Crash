@@ -5,7 +5,7 @@ using UnityEngine;
 
 /*
  * VEX VASQUEZ
- * Last Updated: 11/4/2024
+ * Last Updated: 11/6/2024
  * Controls Enemy Movement for Regular Enemies
  */
 
@@ -76,6 +76,8 @@ public class RegularEnemy : MonoBehaviour
         {
             MoveRight();
         }
+
+        
     }
 
     private void MoveLeft()
@@ -89,4 +91,6 @@ public class RegularEnemy : MonoBehaviour
         transform.position += Vector3.right * movingrightSpeed * Time.deltaTime;
 
     }
+
+
 }
