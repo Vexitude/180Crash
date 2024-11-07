@@ -43,21 +43,21 @@ public class RegularEnemy : MonoBehaviour
         {
             //print( "Left: " + hitInfo.distance);
             //("Tag: " + hitInfo.collider.tag);
-            print("Hit: " + hitInfo.collider.gameObject.name);
+            //print("Hit: " + hitInfo.collider.gameObject.name);
 
             if (hitInfo.collider.CompareTag("Wall") && hitInfo.distance < 0.1f)
             {
-                print("Left");
+                //print("Left");
                 ismovingleft = false;
 
             }
         }
         else if (!ismovingleft && Physics.Raycast(raycastRightOrigin, Vector3.right, out hitInfo))
         {
-            print("Right: " + hitInfo.distance);
+            //print("Right: " + hitInfo.distance);
             if (hitInfo.collider.CompareTag("Wall") && hitInfo.distance < 0.1f)
             {
-                print("Right");
+                //print("Right");
                 ismovingleft = true;
 
             }
@@ -100,7 +100,11 @@ public class RegularEnemy : MonoBehaviour
             {
                 //player is attacking
                 print("Respawn");
-                gameObject.GetComponent<MeshRenderer>().enabled = false;
+                Destroy(gameObject);
+            }
+            else
+            {
+                collision.gameObject.GetComponent<PlayerMovement>().Respawn();
             }
                 
             
