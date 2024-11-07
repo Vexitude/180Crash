@@ -746,8 +746,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movingrightSpeed: 5
   movingleftSpeed: 5
+  movingBackSpeed: 5
+  movingFrontSpeed: 5
   raycastDist: 1.2
-  ismovingleft: 1
+  isMovingLeft: 0
+  isMovingBack: 0
+  changeDir: 0
 --- !u!54 &2119983811
 Rigidbody:
   m_ObjectHideFlags: 0
