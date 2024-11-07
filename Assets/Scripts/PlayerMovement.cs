@@ -135,6 +135,8 @@ public class PlayerMovement : MonoBehaviour
 
         GetComponent<MeshRenderer>().material.color = Color.red;
 
+        isAttacking = true;
+
         yield return new WaitForSeconds(2);
 
         GetComponent<MeshRenderer>().material.color = startcolor;

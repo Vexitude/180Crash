@@ -96,8 +96,9 @@ public class RegularEnemy : MonoBehaviour
     {
         if(collision.gameObject.GetComponent<PlayerMovement>())
         {
-            if(collision.gameObject.GetComponent<PlayerMovement>().!isAttacking)
+            if(collision.gameObject.GetComponent<PlayerMovement>().isAttacking)
             {
+                //player is attacking
                 print("Respawn");
                 gameObject.GetComponent<MeshRenderer>().enabled = false;
             }
