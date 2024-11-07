@@ -92,5 +92,18 @@ public class RegularEnemy : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.GetComponent<PlayerMovement>())
+        {
+            if(collision.gameObject.GetComponent<PlayerMovement>().!isAttacking)
+            {
+                print("Respawn");
+                gameObject.GetComponent<MeshRenderer>().enabled = false;
+            }
+                
+            
+        }
+    }
 
 }
