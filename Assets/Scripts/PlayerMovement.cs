@@ -111,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
         {
             print("Game Over");
             gameObject.GetComponent<MeshRenderer>().enabled = false;
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(1);
         }
         else
         {
