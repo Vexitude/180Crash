@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 /*
@@ -110,6 +111,7 @@ public class PlayerMovement : MonoBehaviour
         {
             print("Game Over");
             gameObject.GetComponent<MeshRenderer>().enabled = false;
+            SceneManager.LoadScene(2);
         }
         else
         {
