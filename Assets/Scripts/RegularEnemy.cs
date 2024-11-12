@@ -16,6 +16,7 @@ public class RegularEnemy : MonoBehaviour
     private Vector3 raycastRightOrigin;
     private Vector3 raycastBackOrigin;
     private Vector3 raycastFrontOrigin;
+    private Vector3 raycastLedgeOrigin;
 
     public float movingrightSpeed = 5;
     public float movingleftSpeed = 5;
@@ -41,6 +42,7 @@ public class RegularEnemy : MonoBehaviour
 
         float halfWidth = transform.localScale.x / 2 + 0.1f;
         float hWidth = transform.localScale.z / 2 + 0.1f;
+        float dwidth = transform.localScale.y / 2 + 0.1f;
 
 
         raycastLeftOrigin = transform.position - new Vector3(halfWidth, 0, 0);
@@ -49,19 +51,31 @@ public class RegularEnemy : MonoBehaviour
         raycastBackOrigin = transform.position - new Vector3(hWidth, 0, 0);
         raycastFrontOrigin = transform.position + new Vector3(hWidth, 0, 0);
 
+        raycastLedgeOrigin = transform.position - new Vector3(hWidth, 0, 0);
 
-        if(!changeDir)
+
+        if (!changeDir)
         {
-            if (isMovingBack && Physics.Raycast(raycastBackOrigin, Vector3.back, out hitInfo))
+            if (isMovingBack && Physics.Raycast(raycastBackOrigin, Vector3.back, out hitInfo) ||
+                isMovingBack && Physics.Raycast(raycastLedgeOrigin, Vector3.down, out hitInfo))
             {
                 if (hitInfo.collider.CompareTag("Wall") && hitInfo.distance < 0.1f)
                 {
                     isMovingBack = false;
                 }
+                else if (hitInfo.collider.CompareTag("Floor") && hitInfo.distance < 0.1f)
+                {
+                    isMovingBack = false;
+                }
             }
-            else if (!isMovingBack && Physics.Raycast(raycastFrontOrigin, Vector3.forward, out hitInfo))
+            else if (!isMovingBack && Physics.Raycast(raycastFrontOrigin, Vector3.forward, out hitInfo) ||
+                 !isMovingBack && Physics.Raycast(raycastLedgeOrigin, Vector3.down, out hitInfo))
             {
                 if (hitInfo.collider.CompareTag("Wall") && hitInfo.distance < 0.1f)
+                {
+                    isMovingBack = true;
+                }
+                else if (hitInfo.collider.CompareTag("Floor") && hitInfo.distance < 0.1f)
                 {
                     isMovingBack = true;
                 }
@@ -78,11 +92,13 @@ public class RegularEnemy : MonoBehaviour
             }
             Debug.DrawRay(raycastBackOrigin, Vector3.back * raycastDist, Color.red);
             Debug.DrawRay(raycastFrontOrigin, Vector3.forward * raycastDist, Color.red);
+            Debug.DrawRay(raycastLedgeOrigin, Vector3.down * raycastDist, Color.red);
         }
         else
         {
 
-            if (isMovingLeft && Physics.Raycast(raycastLeftOrigin, Vector3.left, out hitInfo))
+            if (isMovingLeft && Physics.Raycast(raycastLeftOrigin, Vector3.left, out hitInfo) ||
+                 isMovingLeft && Physics.Raycast(raycastLedgeOrigin, Vector3.down, out hitInfo))
             {
                 //print( "Left: " + hitInfo.distance);
                 //("Tag: " + hitInfo.collider.tag);
@@ -94,8 +110,13 @@ public class RegularEnemy : MonoBehaviour
                     isMovingLeft = false;
 
                 }
+                else if (hitInfo.collider.CompareTag("Floor") && hitInfo.distance < 0.1f)
+                {
+                    isMovingBack = false;
+                }
             }
-            else if (!isMovingLeft && Physics.Raycast(raycastRightOrigin, Vector3.right, out hitInfo))
+            else if (!isMovingLeft && Physics.Raycast(raycastRightOrigin, Vector3.right, out hitInfo) ||
+                 !isMovingLeft && Physics.Raycast(raycastLedgeOrigin, Vector3.down, out hitInfo))
             {
                 //print("Right: " + hitInfo.distance);
                 if (hitInfo.collider.CompareTag("Wall") && hitInfo.distance < 0.1f)
@@ -104,9 +125,13 @@ public class RegularEnemy : MonoBehaviour
                     isMovingLeft = true;
 
                 }
+                else if (hitInfo.collider.CompareTag("Floor") && hitInfo.distance < 0.1f)
+                {
+                    isMovingBack = true;
+                }
             }
             Debug.DrawRay(raycastLeftOrigin, Vector3.left * raycastDist, Color.red);
-
+            Debug.DrawRay(raycastLedgeOrigin, Vector3.down * raycastDist, Color.red);
             Debug.DrawRay(raycastRightOrigin, Vector3.right * raycastDist, Color.red);
 
 

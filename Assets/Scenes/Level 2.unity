@@ -358,7 +358,7 @@ Transform:
   m_GameObject: {fileID: 1133507840}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.83, y: -0.14, z: 0}
+  m_LocalPosition: {x: -5.57, y: -0.14, z: 0}
   m_LocalScale: {x: 1.5223395, y: 10.033, z: 10.033}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -393,7 +393,7 @@ Transform:
   m_GameObject: {fileID: 1276565727}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.519, z: 0}
+  m_LocalPosition: {x: 0, y: 0.529, z: 0}
   m_LocalScale: {x: 1.0361692, y: 0.11295263, z: 1.0361692}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 1315945460}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
