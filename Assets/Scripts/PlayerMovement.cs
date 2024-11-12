@@ -96,12 +96,13 @@ public class PlayerMovement : MonoBehaviour
             totalFruit += other.GetComponent<WumpaFruit>().fruitValue;
             Destroy(other.gameObject);
         }
-            
+
+        if (other.CompareTag("JumpKill"))
+        {
+            Destroy(other.transform.parent.gameObject);
+        }
 
     }
-
-
-
 
 
     public void Respawn()
