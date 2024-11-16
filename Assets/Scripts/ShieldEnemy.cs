@@ -175,6 +175,7 @@ public class ShieldEnemy : MonoBehaviour
         {
             collision.gameObject.GetComponent<PlayerMovement>().Respawn();
         }
+        
     }
 
 }
