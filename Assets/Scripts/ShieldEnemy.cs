@@ -1,16 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 /*
  * VEX VASQUEZ
  * Last Updated: 11/15/2024
- * Controls Enemy Movement for Regular Enemies
+ * Controls Enemy Movement for Shield Enemies
  */
-
-
-public class RegularEnemy : MonoBehaviour
+public class ShieldEnemy : MonoBehaviour
 {
     private Vector3 raycastLeftOrigin;
     private Vector3 raycastRightOrigin;
@@ -32,7 +29,7 @@ public class RegularEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-     
+
     }
 
     // Update is called once per frame
@@ -145,7 +142,7 @@ public class RegularEnemy : MonoBehaviour
                 MoveRight();
             }
         }
-        
+
 
     }
 
@@ -174,20 +171,9 @@ public class RegularEnemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.GetComponent<PlayerMovement>())
+        if (collision.gameObject.GetComponent<PlayerMovement>())
         {
-            if(collision.gameObject.GetComponent<PlayerMovement>().isAttacking)
-            {
-                //player is attacking
-                print("Respawn");
-                Destroy(gameObject);
-            }
-            else
-            {
-                collision.gameObject.GetComponent<PlayerMovement>().Respawn();
-            }
-                
-            
+            collision.gameObject.GetComponent<PlayerMovement>().Respawn();
         }
     }
 
