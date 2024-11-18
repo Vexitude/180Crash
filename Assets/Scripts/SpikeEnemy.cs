@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * VEX VASQUEZ
+ * Last Updated: 11/17/2024
+ * Controls Enemy Movement for Spiked Enemies
+ */
 public class SpikeEnemy : MonoBehaviour
 {
     private Vector3 raycastLeftOrigin;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 /*
  * VEX VASQUEZ
- * Last Updated: 11/15/2024
+ * Last Updated: 11/17/2024
  * Controls Enemy Movement for Shield Enemies
  */
 public class ShieldEnemy : MonoBehaviour
