@@ -56,8 +56,8 @@ public class RegularEnemy : MonoBehaviour
 
         if (!changeDir)
         {
-            if (isMovingBack && Physics.Raycast(raycastBackOrigin, Vector3.back, out hitInfo) ||
-                isMovingBack && Physics.Raycast(raycastLedgeOrigin, Vector3.down, out hitInfo))
+            if (isMovingBack && Physics.Raycast(raycastBackOrigin, Vector3.back, out hitInfo) &&
+                Physics.Raycast(raycastLedgeOrigin, Vector3.down, out hitInfo))
             {
                 if (hitInfo.collider.CompareTag("Wall") && hitInfo.distance < 0.1f)
                 {
@@ -68,18 +68,21 @@ public class RegularEnemy : MonoBehaviour
                     isMovingBack = false;
                 }
             }
-            else if (!isMovingBack && Physics.Raycast(raycastFrontOrigin, Vector3.forward, out hitInfo) ||
-                 !isMovingBack && Physics.Raycast(raycastLedgeOrigin, Vector3.down, out hitInfo))
+
+            else if (!isMovingBack && Physics.Raycast(raycastFrontOrigin, Vector3.forward, out hitInfo) &&
+                Physics.Raycast(raycastLedgeOrigin, Vector3.down, out hitInfo))
             {
                 if (hitInfo.collider.CompareTag("Wall") && hitInfo.distance < 0.1f)
                 {
                     isMovingBack = true;
                 }
-                else if (hitInfo.collider.CompareTag("Floor") && hitInfo.distance < 0.1f)
+                else if(hitInfo.collider.CompareTag("Floor") && hitInfo.distance < 0.1f)
                 {
                     isMovingBack = true;
                 }
+
             }
+
 
             if (isMovingBack)
             {

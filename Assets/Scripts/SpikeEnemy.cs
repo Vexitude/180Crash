@@ -2,12 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * VEX VASQUEZ
- * Last Updated: 11/15/2024
- * Controls Enemy Movement for Shield Enemies
- */
-public class ShieldEnemy : MonoBehaviour
+public class SpikeEnemy : MonoBehaviour
 {
     private Vector3 raycastLeftOrigin;
     private Vector3 raycastRightOrigin;
@@ -53,8 +48,8 @@ public class ShieldEnemy : MonoBehaviour
 
         if (!changeDir)
         {
-            if (isMovingBack && Physics.Raycast(raycastBackOrigin, Vector3.back, out hitInfo) ||
-                isMovingBack && Physics.Raycast(raycastLedgeOrigin, Vector3.down, out hitInfo))
+            if (isMovingBack && Physics.Raycast(raycastBackOrigin, Vector3.back, out hitInfo) &&
+                Physics.Raycast(raycastLedgeOrigin, Vector3.down, out hitInfo))
             {
                 if (hitInfo.collider.CompareTag("Wall") && hitInfo.distance < 0.1f)
                 {
@@ -65,8 +60,9 @@ public class ShieldEnemy : MonoBehaviour
                     isMovingBack = false;
                 }
             }
-            else if (!isMovingBack && Physics.Raycast(raycastFrontOrigin, Vector3.forward, out hitInfo) ||
-                 !isMovingBack && Physics.Raycast(raycastLedgeOrigin, Vector3.down, out hitInfo))
+
+            else if (!isMovingBack && Physics.Raycast(raycastFrontOrigin, Vector3.forward, out hitInfo) &&
+                Physics.Raycast(raycastLedgeOrigin, Vector3.down, out hitInfo))
             {
                 if (hitInfo.collider.CompareTag("Wall") && hitInfo.distance < 0.1f)
                 {
@@ -76,7 +72,9 @@ public class ShieldEnemy : MonoBehaviour
                 {
                     isMovingBack = true;
                 }
+
             }
+
 
             if (isMovingBack)
             {
@@ -171,16 +169,20 @@ public class ShieldEnemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<PlayerMovement>().isAttacking)
+        if (collision.gameObject.GetComponent<PlayerMovement>())
         {
-            collision.gameObject.GetComponent<PlayerMovement>().Respawn();
-        }
-        else
-        {
-            collision.gameObject.GetComponent<PlayerMovement>().Respawn();
-        }
+            if (collision.gameObject.GetComponent<PlayerMovement>().isAttacking)
+            {
+                //player is attacking
+                print("Respawn");
+                Destroy(gameObject);
+            }
+            else
+            {
+                collision.gameObject.GetComponent<PlayerMovement>().Respawn();
+            }
 
 
+        }
     }
-
 }
