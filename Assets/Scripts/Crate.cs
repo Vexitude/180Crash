@@ -48,5 +48,23 @@ public class Crate : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.GetComponent<PlayerMovement>())
+        {
+            for (int i = 0; i < wumpafruit; i++)
+            {
+
+                Selection.activeObject = PrefabUtility.InstantiatePrefab(prefab, transform);
+                var tempPrefab = Selection.activeGameObject;
+                tempPrefab.transform.position = spawnPosition;
+                tempPrefab.transform.rotation = Quaternion.identity;
+
+                Instantiate(prefab, spawnPosition, Quaternion.identity);
+            }
+        }
+    }
+
+
 
 }
