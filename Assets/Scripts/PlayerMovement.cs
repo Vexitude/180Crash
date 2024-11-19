@@ -105,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(other.transform.parent.gameObject);
         }
-
+        //resets lives when going through a portal, emulates starting a new game
         if(other.GetComponent<Portal>())
         {
             lives = 3;
