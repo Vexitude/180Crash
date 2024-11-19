@@ -26,8 +26,12 @@ public class PlayerMovement : MonoBehaviour
 
     public int lives = 3;
     public int totalFruit = 0;
+    public int LvlNum = 0;
 
-    public GameObject respawnPoint;
+    public GameObject respawnPoint1;
+    public GameObject respawnPoint2;
+    public GameObject respawnPoint3;
+    public GameObject respawnPoint4;
 
     private Vector3 moveDir;
     private Rigidbody rb;
@@ -102,7 +106,15 @@ public class PlayerMovement : MonoBehaviour
             Destroy(other.transform.parent.gameObject);
         }
 
+        if(other.GetComponent<Portal>())
+        {
+            lives = 3;
+            LvlNum += other.GetComponent<Portal>().LvlEqual;
+        }
+
     }
+
+    
 
 
     public void Respawn()
@@ -116,7 +128,23 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            transform.position = respawnPoint.transform.position;
+            if(LvlNum == 0)
+            {
+                transform.position = respawnPoint1.transform.position;
+            }
+            else if (LvlNum == 1)
+            {
+                transform.position = respawnPoint2.transform.position;
+            }
+            else if (LvlNum == 2)
+            {
+                transform.position = respawnPoint3.transform.position;
+            }
+            else if (LvlNum == 3)
+            {
+                transform.position = respawnPoint4.transform.position;
+            }
+           
         }
     }
 
