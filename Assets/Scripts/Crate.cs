@@ -47,4 +47,6 @@ public class Crate : MonoBehaviour
             print("try attacking");
         }
     }
+
+
 }
