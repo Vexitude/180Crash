@@ -10,7 +10,7 @@ using UnityEngine;
 
 public class BreakPlatform : MonoBehaviour
 {
-    private bool wait = true;
+
 
     public int waitToBreak;
 
