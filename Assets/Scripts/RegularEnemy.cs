@@ -56,7 +56,7 @@ public class RegularEnemy : MonoBehaviour
 
         if (!changeDir)
         {
-            if (isMovingBack && Physics.Raycast(raycastBackOrigin, Vector3.back, out hitInfo) &&
+            if (isMovingBack && Physics.Raycast(raycastBackOrigin, Vector3.back, out hitInfo) ||
                 Physics.Raycast(raycastLedgeOrigin, Vector3.down, out hitInfo))
             {
                 if (hitInfo.collider.CompareTag("Wall") && hitInfo.distance < 0.1f)
@@ -69,7 +69,7 @@ public class RegularEnemy : MonoBehaviour
                 }
             }
 
-            else if (!isMovingBack && Physics.Raycast(raycastFrontOrigin, Vector3.forward, out hitInfo) &&
+            else if (!isMovingBack && Physics.Raycast(raycastFrontOrigin, Vector3.forward, out hitInfo) ||
                 Physics.Raycast(raycastLedgeOrigin, Vector3.down, out hitInfo))
             {
                 if (hitInfo.collider.CompareTag("Wall") && hitInfo.distance < 0.1f)
