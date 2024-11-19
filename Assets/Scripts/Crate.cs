@@ -18,9 +18,12 @@ public class Crate : MonoBehaviour
 
     private void Start()
     {
-        spawnPosition = gameObject.transform.position;
+        spawnPosition = this.transform.position;
+
+
 
     }
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -31,10 +34,37 @@ public class Crate : MonoBehaviour
             for (int i = 0; i < wumpafruit; i++)
             {
 
-                //Instantiate(prefab, spawnPosition, Quaternion.identity);
-                PrefabUtility.InstantiatePrefab(prefab);
+                Selection.activeObject = PrefabUtility.InstantiatePrefab(prefab, transform);
+                var tempPrefab = Selection.activeGameObject;
+                tempPrefab.transform.position = spawnPosition;
+                tempPrefab.transform.rotation = Quaternion.identity;
 
+                Instantiate(prefab, spawnPosition, Quaternion.identity);
+            }
+        }
+        else
+        {
+            print("try attacking");
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.GetComponent<PlayerMovement>())
+        {
+            for (int i = 0; i < wumpafruit; i++)
+            {
+
+                Selection.activeObject = PrefabUtility.InstantiatePrefab(prefab, transform);
+                var tempPrefab = Selection.activeGameObject;
+                tempPrefab.transform.position = spawnPosition;
+                tempPrefab.transform.rotation = Quaternion.identity;
+
+                Instantiate(prefab, spawnPosition, Quaternion.identity);
             }
         }
     }
+
+
+
 }
